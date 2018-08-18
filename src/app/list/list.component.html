@@ -1,0 +1,16 @@
+<div class="monthRecords" *ngFor="let month of monthData">
+  <div class="summary">
+    <div class="month">{{month[1] | slice:5:7}}</div>
+    <div class="month-cost">本月支出：{{month.cost}}</div>
+  </div>
+  <div class="list">
+    <div class="record" *ngFor="let record of month[0]" (click)="onRecordClick(record)">
+      <div class="date">{{record.datetime | slice:8:10}}</div>
+      <div class="description">
+        <div class="cateogry">{{record.category.name}} - {{record.item.name}}</div>
+        <div class="time">{{record.datetime | slice:11:16}}</div>
+      </div>
+      <div class="price">{{record.price | number:'0.0-0'}}</div>
+    </div>
+  </div>
+</div>

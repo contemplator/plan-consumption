@@ -1,0 +1,39 @@
+@import 'assets/variable.scss';
+
+/* tabview */
+.ui-tabview {
+  padding: 0;
+}
+.ui-tabview .ui-tabview-panel {
+  height: calc(100vh - #{$nav-height});
+  padding: $space-unit;
+  overflow: auto;
+}
+.ui-tabview.ui-tabview-top > .ui-tabview-nav {
+  padding: 0;
+  border-bottom: 1px solid $border-color;
+  height: $nav-height;
+}
+.ui-tabview .ui-tabview-nav li {
+  margin: 0;
+  width: 100% / $page-count;
+}
+.ui-tabview .ui-tabview-nav li a {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+.ui-tabview .ui-corner-bottom {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+// .ui-tabview .ui-corner-all {
+//   border-radius: 0;
+// }
+
+/* form */
+
+// 解決 div 做成 list 難以拖拉的問題
+div{
+  -webkit-overflow-scrolling: touch;
+}

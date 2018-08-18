@@ -1,0 +1,26 @@
+@import '../../assets/variable';
+$content-height: calc(100% + #{$space-unit*2});
+.list-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: calc(#{$content-height} * 0.7);
+  margin: (-$space-unit) (-$space-unit) 0 (-$space-unit);
+  border-bottom: 1px solid $border-color;
+}
+
+.category-list,
+.item-list {
+  padding: $space-unit;
+  flex: 1 1 50%;
+  height: 100%;
+  overflow: auto;
+}
+
+.category-list {
+  border-right: 1px solid $border-color;
+}
+
+.list-item{
+  height: $line-height;
+}

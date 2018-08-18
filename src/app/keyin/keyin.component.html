@@ -1,0 +1,48 @@
+<div class="form">
+  <div class="form-group-H">
+    <label class="form-label">日期</label>
+    <div class="form-input">
+      <p-calendar [(ngModel)]="record.date" dateFormat="yy-mm-dd"></p-calendar>
+    </div>
+  </div>
+
+  <div class="form-group-H">
+    <label class="form-label">時間</label>
+    <div class="form-input">
+      <p-calendar [(ngModel)]="record.time" [timeOnly]="true"></p-calendar>
+    </div>
+  </div>
+
+  <div class="form-group-H">
+    <label class="form-label">金額</label>
+    <div class="form-input">
+      <input type="tel" [(ngModel)]="record.price" (ngModelChange)="fixInput($event)" pInputText>
+    </div>
+  </div>
+
+  <div class="form-group-H">
+    <label class="form-label">分類</label>
+    <div class="form-input">
+      <p-dropdown [options]="categories" [(ngModel)]="record.category" (onChange)="onCategorySelect($event)" [style]="{'width': '8em'}" autoWidth="false"></p-dropdown>
+    </div>
+  </div>
+
+  <div class="form-group-H">
+    <label class="form-label">項目</label>
+    <div class="form-input">
+      <p-dropdown [options]="filtedItems" [(ngModel)]="record.item" [style]="{'width': '8em'}" autoWidth="false"></p-dropdown>
+    </div>
+  </div>
+
+  <div class="form-group-H">
+    <label class="form-label">備註</label>
+    <div class="form-input">
+      <input type="text" name="remark" id="remark" placeholder="補充說明" [(ngModel)]="record.remark" pInputText>
+    </div>
+  </div>
+</div>
+
+<div class="btn-group">
+  <button pButton class="btn-reset ui-button-warning" (click)="onResetClick()" label="清空"></button>
+  <button pButton class="btn-send" (click)="onSendClick()" [label]="!record.key ? '新增': '修改'"></button>
+</div>
