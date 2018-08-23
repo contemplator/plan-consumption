@@ -45,7 +45,7 @@ export class AppService {
               data.key = item.key;
               return data;
             });
-            // this.recordList.sort(this.sortByDateDesc);
+            this.recordList.sort(this.sortByDateDesc);
             resolve(this.recordList);
           },
           error => {
