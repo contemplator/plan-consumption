@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { AppService } from '../app.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { AppService } from '../app.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnChanges {
   @Output() onRecordSelect = new EventEmitter();
   @Input() showList = false;
   monthData: any[] = [];

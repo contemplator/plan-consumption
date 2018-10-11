@@ -15,7 +15,7 @@ export class AppComponent {
 
   constructor(
     private service: AppService
-  ){ }
+  ) { }
 
   onRecordSelect(event: SpendRecord): void {
     this.selectedRecord = Object.assign({}, event);
@@ -31,9 +31,9 @@ export class AppComponent {
 
   onTabChange(event): void {
     const tabIndex = event.index;
-    if(tabIndex === 1){
+    if (tabIndex === 1) {
       this.showList = true;
-    }else{
+    } else {
       this.showList = false;
     }
   }

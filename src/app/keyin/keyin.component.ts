@@ -109,10 +109,10 @@ export class KeyinComponent implements OnInit {
     const time = new Date(this.record.time);
     let hour = '';
     let minute = '';
-    if(isNaN(time.getTime())){
+    if (isNaN(time.getTime())) {
       hour = this.record.time.substring(0, 2);
       minute = this.record.time.substring(3, 5);
-    }else{
+    } else {
       hour = time.getHours().padLeft(2);
       minute = time.getMinutes().padLeft(2);
     }

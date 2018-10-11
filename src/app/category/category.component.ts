@@ -13,7 +13,7 @@ export class CategoryComponent implements OnInit {
   filtedItems: FirebaseObject<CategoryItem>[] = [];
   selectedCategory: FirebaseObject<Category> = { key: '', value: new Category() };
   selectedItem: FirebaseObject<CategoryItem> = { key: '', value: new CategoryItem() };
-  curEdit: number = 0;      // 1: category, 2: categoryItem
+  curEdit = 0;      // 1: category, 2: categoryItem
 
   constructor(
     private service: AppService

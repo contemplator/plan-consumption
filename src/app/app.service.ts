@@ -135,9 +135,9 @@ export class AppService {
    * @param category
    */
   setCategory(category: FirebaseObject<Category>): void {
-    if(category.key){
+    if (category.key) {
       this.firebase.list('category').update(category.key, category.value);
-    }else{
+    } else {
       this.firebase.list('category').push(category.value);
     }
   }
@@ -147,15 +147,15 @@ export class AppService {
    * @param category
    */
   setCategoryItem(categoryItem: FirebaseObject<CategoryItem>): Promise<string> {
-    return new Promise(resolve=>{
-      if(categoryItem.key){
+    return new Promise(resolve => {
+      if (categoryItem.key) {
         this.firebase.list('item').update(categoryItem.key, categoryItem.value);
         resolve('');
-      }else{
+      } else {
         const newRef = this.firebase.list('item').push(categoryItem.value);
         const newKey = newRef.key;
         resolve(newKey);
       }
-    })
+    });
   }
 }
