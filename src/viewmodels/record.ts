@@ -14,7 +14,7 @@ export class SpendRecord {
     const today = new Date();
     this.datetime = today.toFormatString('YYYY-MM-DD hh:mm:ss');
     this.datetime = this.datetime.substring(0, 10) + 'T' + this.datetime.substring(11, 19);
-    this.price = 0;
+    this.price = null;
     this.category = new Category();
     this.item = new CategoryItem();
     this.remark = '';

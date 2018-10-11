@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
-import { TabViewModule, DropdownModule, CalendarModule, InputTextareaModule, ButtonModule } from 'primeng/primeng';
+import { TabViewModule, DropdownModule, CalendarModule, InputTextareaModule, ButtonModule, ListboxModule } from 'primeng/primeng';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
@@ -38,7 +38,8 @@ import { CategoryComponent } from './category/category.component';
     DropdownModule,
     InputTextareaModule,
     InputTextareaModule,
-    ButtonModule
+    ButtonModule,
+    ListboxModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

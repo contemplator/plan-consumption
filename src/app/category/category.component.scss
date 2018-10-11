@@ -1,5 +1,5 @@
 @import '../../assets/variable';
-$content-height: calc(100% + #{$space-unit*2});
+$content-height: calc(100% + #{$space-unit * 2});
 .list-container {
   display: flex;
   justify-content: flex-start;
@@ -21,6 +21,28 @@ $content-height: calc(100% + #{$space-unit*2});
   border-right: 1px solid $border-color;
 }
 
-.list-item{
+.list-item {
   height: $line-height;
+}
+
+.item-form {
+  padding: $space-unit 0;
+  position: relative;
+  height: calc(#{$content-height} * 0.3 - #{$space-unit});
+  .form-title,
+  .form-category,
+  .form-item {
+    margin-bottom: $space-unit;
+  }
+  .btn-group {
+    position: absolute;
+    width: calc(100vw - #{$space-unit} * 2);
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    >button{
+      margin-left: $space-unit;
+    }
+  }
 }

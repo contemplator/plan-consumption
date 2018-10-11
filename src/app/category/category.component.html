@@ -1,36 +1,32 @@
 <div class="list-container">
   <div class="category-list">
-    <div class="category list-item" *ngFor="let item of categoryList" (click)="onCategoryClick(item)" [ngClass]="{'active': selectedCategory.value.id === item.value.id}">
-      {{item.value.name}}
-    </div>
-
-    <div class="category list-item" (click)="onAddCategoryClick()">新增分類</div>
+    <p-listbox [options]="categoryList" [(ngModel)]="selectedCategory" optionLabel="value.name" (onChange)="onCategoryClick($event)"></p-listbox>
   </div>
   <div class="item-list">
-    <div class="category-item list-item" *ngFor="let item of filtedItems" (click)="onItemClick(item)" [ngClass]="{'active': selectedItem.value.id === item.value.id}">
-      {{item.value.name}}
-    </div>
-
-    <div class="category-item list-item" (click)="onAddItemClick()">新增分類項目</div>
+    <p-listbox [options]="filtedItems" [(ngModel)]="selectedItem" optionLabel="value.name" (onChange)="onItemClick($event)"></p-listbox>
   </div>
 </div>
 
 <div class="item-form">
-  <div>目前修改：{{curEdit === 2 ? '分類下項目': '分類'}}</div>
-  <div *ngIf="curEdit === 2">分類：{{selectedCategory.value.name}}</div>
-  <div *ngIf="curEdit === 1">
+  <div class="form-title">目前修改：{{curEdit === 2 ? '分類下項目': '分類'}}</div>
+  
+  <div class="form-category" *ngIf="curEdit === 2">分類：{{selectedCategory.value.name}}</div>
+  
+  <div class="form-item" *ngIf="curEdit === 1">
+    <label>分類名稱：</label>
     <input type="text" [(ngModel)]="selectedCategory.value.name">
   </div>
-  <div *ngIf="curEdit === 2">
+  <div class="form-item" *ngIf="curEdit === 2">
+    <label>項目名稱：</label>
     <input type="text" [(ngModel)]="selectedItem.value.name">
   </div>
 
-  <div class="btn-group" *ngIf="curEdit === 1" >
+  <div class="btn-group" *ngIf="curEdit === 1">
     <button pButton class="btn-delete ui-button-danger" (click)="onDeleteCategoryClick()" label="刪除"></button>
     <button pButton class="btn-send" (click)="onSetCategoryClick()" [label]="!selectedCategory.key ? '新增': '修改'"></button>
   </div>
 
-  <div class="btn-group" *ngIf="curEdit === 2" >
+  <div class="btn-group" *ngIf="curEdit === 2">
     <button pButton class="btn-delete ui-button-danger" (click)="onDeleteItemClick()" label="刪除"></button>
     <button pButton class="btn-send" (click)="onSetItemClick()" [label]="!selectedItem.key ? '新增': '修改'"></button>
   </div>

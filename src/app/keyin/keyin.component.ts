@@ -132,6 +132,9 @@ export class KeyinComponent implements OnInit {
     this.record.remark = '';
   }
 
+  /**
+   * 清空按鈕
+   */
   onResetClick(): void {
     const today = new Date();
     this.record.datetime = today.toFormatString('YYYY-MM-DD hh:mm:ss');
@@ -141,6 +144,7 @@ export class KeyinComponent implements OnInit {
     this.filtedItems = this.items.filter(item => item.value.categoryId === 1).filter(item => item.value.deleted !== true);
     this.record.item = this.filtedItems[0].value;
     this.record.remark = '';
+    this.record.key = '';
   }
 
 }
