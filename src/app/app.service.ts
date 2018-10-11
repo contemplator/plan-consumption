@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { toArray, mergeMap, map, zip } from 'rxjs/operators';
+import { toArray, mergeMap, map } from 'rxjs/operators';
 import { AngularFireDatabase, AngularFireAction, DatabaseSnapshot } from 'angularfire2/database';
-import { Observable, from } from 'rxjs';
+import { Observable, from, zip } from 'rxjs';
 import { groupBy } from 'rxjs/operators';
 import { Category, SpendRecord, CategoryItem, FirebaseObject } from '../viewmodels';
 
@@ -82,11 +82,10 @@ export class AppService {
       .pipe(
         groupBy(item => item.datetime.substring(0, 7)),
         mergeMap(group => {
-          return group.pipe(
+          return zip(group.pipe(
             toArray(),
-            zip(from(group).pipe(
-              map(item => item.datetime.substring(0, 7)))
-            )
+          ), from(group).pipe(
+            map(item => item.datetime.substring(0, 7)))
           );
         })
       )
