@@ -31,6 +31,7 @@ export class ListComponent implements OnInit, OnChanges {
     this.service.fetchRecordByMonth().then(res => {
       this.monthData = res.map(item => {
         item.cost = this.sumCost(item[0]);
+        item.costWithoutInvest = this.getMinusInvestCost(item[0]);
         return item;
       });
     });
@@ -48,8 +49,19 @@ export class ListComponent implements OnInit, OnChanges {
       } else {
         return pre;
       }
-
     }, 0);
+  }
+
+  getMinusInvestCost(records: any[]): number {
+    return records
+      .filter(item => item.category.name !== '投資')
+      .reduce((pre, cur) => {
+        if (cur.category.id !== 8) {
+          return pre += cur.price;
+        } else {
+          return pre;
+        }
+      }, 0);
   }
 
 }

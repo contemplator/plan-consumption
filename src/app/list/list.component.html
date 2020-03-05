@@ -2,6 +2,7 @@
   <div class="summary">
     <div class="month">{{month[1] | slice:5:7}}</div>
     <div class="month-cost">本月支出：{{month.cost}}</div>
+    <div class="month-cost">扣除投資：{{month.costWithoutInvest}}</div>
   </div>
   <div class="list">
     <div class="record" *ngFor="let record of month[0]" (click)="onRecordClick(record)">
