@@ -58,7 +58,6 @@ export class AppService {
   async fetchRecordByMonth(): Promise<SpendRecordMonth[]> {
     const records = await this.fetchRecord();
     const recordByMonth = this.groupByMonth(records);
-    console.log(recordByMonth);
     return recordByMonth;
   }
 

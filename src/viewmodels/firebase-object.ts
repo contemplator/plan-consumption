@@ -1,4 +1,4 @@
-import { DataSnapshot } from "angularfire2/database/interfaces";
+import { DataSnapshot } from 'angularfire2/database/interfaces';
 
 export class FirebaseObject<T> {
   key: string;
