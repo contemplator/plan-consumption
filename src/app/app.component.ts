@@ -13,10 +13,12 @@ export class AppComponent {
   selectedRecord: SpendRecord = new SpendRecord();
   showList = false;
 
-  constructor(
-    private service: AppService
-  ) { }
+  constructor() { }
 
+  /**
+   * 在紀錄頁籤點擊某筆紀錄
+   * 切換到修改畫面
+   */
   onRecordSelect(event: SpendRecord): void {
     this.selectedRecord = Object.assign({}, event);
     setTimeout(() => {
@@ -25,11 +27,10 @@ export class AppComponent {
     }, 50);
   }
 
-  onRecordClear(): void {
-    this.selectedRecord = null;
-  }
-
-  onTabChange(event): void {
+  /**
+   * 切換頁籤
+   */
+  onTabChange(event: { originalEvent: MouseEvent, index: number }): void {
     const tabIndex = event.index;
     if (tabIndex === 1) {
       this.showList = true;

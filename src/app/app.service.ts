@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { toArray, mergeMap, map } from 'rxjs/operators';
 import { AngularFireDatabase, AngularFireAction, DatabaseSnapshot } from 'angularfire2/database';
 import { Observable, from, zip } from 'rxjs';
@@ -15,8 +14,7 @@ export class AppService {
   recordListMonth: any[] = [];
 
   constructor(
-    private httpClient: HttpClient,
-    private firebase: AngularFireDatabase,
+    private firebase: AngularFireDatabase
   ) {
     this.initFirebaseCollection();
   }

@@ -22,9 +22,11 @@ export class KeyinComponent implements OnInit {
     this.initCategoryList();
   }
 
+  /**
+   * 取得分類列表
+   */
   initCategoryList(): void {
     this.service.fetchCategoryList().subscribe(res => {
-
       this.categories = res.map(item => {
         const data = item.payload.val();
         return {
@@ -38,6 +40,9 @@ export class KeyinComponent implements OnInit {
     });
   }
 
+  /**
+   * 取得子分類列表
+   */
   initItems(): void {
     this.service.fetchCategoryItemList().subscribe(res => {
       this.items = res.map(item => {
@@ -53,9 +58,8 @@ export class KeyinComponent implements OnInit {
 
   /**
    * 選擇分類事件
-   * @param category
    */
-  onCategorySelect(event): void {
+  onCategorySelect(event: any): void {
     const category = event.value;
     this.filtedItems = this.items
       .filter(item => item.value.categoryId === category.id)
@@ -69,13 +73,11 @@ export class KeyinComponent implements OnInit {
           }
         };
       });
-
     this.record.item = this.filtedItems[0].value;
   }
 
   /**
    * 修正輸入金額
-   * @param value
    */
   fixInput(value): void {
     if (value === '') { value = 0; }

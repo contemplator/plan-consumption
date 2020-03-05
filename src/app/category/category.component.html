@@ -9,9 +9,9 @@
 
 <div class="item-form">
   <div class="form-title">目前修改：{{curEdit === 2 ? '分類下項目': '分類'}}</div>
-  
+
   <div class="form-category" *ngIf="curEdit === 2">分類：{{selectedCategory.value.name}}</div>
-  
+
   <div class="form-item" *ngIf="curEdit === 1">
     <label>分類名稱：</label>
     <input type="text" [(ngModel)]="selectedCategory.value.name">

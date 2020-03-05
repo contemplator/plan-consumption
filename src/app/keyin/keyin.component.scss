@@ -9,15 +9,17 @@ $lable-width: 4em;
   height: $input-height;
   border-bottom: 1px solid $divider-color;
   padding: $space-unit;
+
   .form-label {
     flex: 0 0 $lable-width;
   }
+
   .form-input {
     flex: 1 1 calc(100% - #{$lable-width});
   }
 }
 
-.btn-group{
+.btn-group {
   display: flex;
   justify-content: space-between;
   margin-top: $space-unit*2;

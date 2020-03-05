@@ -13,7 +13,7 @@ export class CategoryComponent implements OnInit {
   filtedItems: FirebaseObject<CategoryItem>[] = [];
   selectedCategory: FirebaseObject<Category> = { key: '', value: new Category() };
   selectedItem: FirebaseObject<CategoryItem> = { key: '', value: new CategoryItem() };
-  curEdit = 0;      // 1: category, 2: categoryItem
+  curEdit = 0;                                        // 1: category, 2: categoryItem
 
   constructor(
     private service: AppService
@@ -70,11 +70,9 @@ export class CategoryComponent implements OnInit {
 
   /**
    * 點選分類列表某個分類
-   * @param category
    */
   onCategoryClick(event): void {
     const category: FirebaseObject<Category> = event.value;
-    // this.selectedCategory = category;
     if (category.value.id === 0) {
       this.selectedCategory.value.name = '';
     }
@@ -97,7 +95,6 @@ export class CategoryComponent implements OnInit {
 
   /**
    * 點選分類項目
-   * @param item
    */
   onItemClick(event): void {
     const item: FirebaseObject<CategoryItem> = event.value;
@@ -138,15 +135,6 @@ export class CategoryComponent implements OnInit {
         this.onCategoryClick(this.selectedCategory);
       }
     });
-  }
-
-  /**
-   * 停用
-   * 選擇新增分類
-   */
-  onAddCategoryClick(): void {
-    this.curEdit = 1;
-    this.selectedCategory = { key: '', value: new Category() };
   }
 
   /**

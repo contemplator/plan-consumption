@@ -8,7 +8,7 @@ import { AppService } from '../app.service';
 })
 export class ListComponent implements OnInit, OnChanges {
   @Output() onRecordSelect = new EventEmitter();
-  @Input() showList = false;
+  @Input() showList = false;                              // 每次切換到紀錄頁籤，showList 就會改變，就會重新抓取資料
   monthData: any[] = [];
 
   constructor(
@@ -27,6 +27,9 @@ export class ListComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * 取得記帳紀錄列表
+   */
   fetchRecords(): void {
     this.service.fetchRecordByMonth().then(res => {
       this.monthData = res.map(item => {
@@ -37,7 +40,9 @@ export class ListComponent implements OnInit, OnChanges {
     });
   }
 
-  /**點擊某筆記錄 */
+  /**
+   * 點擊某筆記錄
+   */
   onRecordClick(record): void {
     this.onRecordSelect.emit(record);
   }
