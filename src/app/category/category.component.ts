@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
-import { Category, CategoryItem, FirebaseObject } from '../../viewmodels';
+import { Category, CategoryItem, FirebaseObject, EditType, EditEnum } from '../../viewmodels';
 
 @Component({
   selector: 'app-category',
@@ -13,7 +13,7 @@ export class CategoryComponent implements OnInit {
   filtedItems: FirebaseObject<CategoryItem>[] = [];
   selectedCategory: FirebaseObject<Category> = { key: '', value: new Category() };
   selectedItem: FirebaseObject<CategoryItem> = { key: '', value: new CategoryItem() };
-  curEdit = 0;                                        // 1: category, 2: categoryItem
+  curEdit: EditType = EditEnum.無;
 
   constructor(
     private service: AppService
@@ -76,7 +76,7 @@ export class CategoryComponent implements OnInit {
     if (category.value.id === 0) {
       this.selectedCategory.value.name = '';
     }
-    this.curEdit = 1;
+    this.curEdit = EditEnum.母分類;
     this.filtedItems = this.itemList
       .filter(item => item.value.categoryId === category.value.id)
       .filter(item => item.value.deleted !== true);
@@ -103,7 +103,7 @@ export class CategoryComponent implements OnInit {
       return;
     }
 
-    this.curEdit = 2;
+    this.curEdit = EditEnum.子分類;
     if (item.value.id === 0) {
       this.selectedItem.value.name = '';
     }
@@ -141,7 +141,7 @@ export class CategoryComponent implements OnInit {
    * 選擇新增分類項目
    */
   onAddItemClick(): void {
-    this.curEdit = 2;
+    this.curEdit = EditEnum.子分類;
     this.selectedItem = { key: '', value: new CategoryItem() };
     this.selectedItem.value.categoryId = this.selectedCategory.value.id;
     this.selectedItem.value.categoryName = this.selectedCategory.value.name;

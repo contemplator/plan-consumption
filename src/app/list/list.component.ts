@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { AppService } from '../app.service';
+import { SpendRecordMonth, SpendRecord } from 'src/viewmodels';
 
 @Component({
   selector: 'app-list',
@@ -9,7 +10,7 @@ import { AppService } from '../app.service';
 export class ListComponent implements OnInit, OnChanges {
   @Output() onRecordSelect = new EventEmitter();
   @Input() showList = false;                              // 每次切換到紀錄頁籤，showList 就會改變，就會重新抓取資料
-  monthData: any[] = [];
+  monthData: SpendRecordMonth[] = [];
 
   constructor(
     private service: AppService
@@ -47,7 +48,7 @@ export class ListComponent implements OnInit, OnChanges {
     this.onRecordSelect.emit(record);
   }
 
-  sumCost(records: any[]): number {
+  sumCost(records: SpendRecord[]): number {
     return records.reduce((pre, cur) => {
       if (cur.category.id !== 8) {
         return pre += cur.price;
@@ -57,7 +58,7 @@ export class ListComponent implements OnInit, OnChanges {
     }, 0);
   }
 
-  getMinusInvestCost(records: any[]): number {
+  getMinusInvestCost(records: SpendRecord[]): number {
     return records
       .filter(item => item.category.name !== '投資')
       .reduce((pre, cur) => {

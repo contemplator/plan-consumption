@@ -3,15 +3,15 @@ import { toArray, mergeMap, map } from 'rxjs/operators';
 import { AngularFireDatabase, AngularFireAction, DatabaseSnapshot } from 'angularfire2/database';
 import { Observable, from, zip } from 'rxjs';
 import { groupBy } from 'rxjs/operators';
-import { Category, SpendRecord, CategoryItem, FirebaseObject } from '../viewmodels';
+import { Category, SpendRecord, CategoryItem, FirebaseObject, FirebaseCollection, SpendRecordMonth } from '../viewmodels';
 
 @Injectable()
 export class AppService {
   recordCollection: Observable<{}[]>;
   categoryCollection: Observable<AngularFireAction<DatabaseSnapshot<Category>>[]>;
   categoryItemCollection: Observable<AngularFireAction<DatabaseSnapshot<CategoryItem>>[]>;
-  recordList: any[] = [];
-  recordListMonth: any[] = [];
+  recordList: SpendRecord[] = [];
+  recordListMonth: SpendRecordMonth[] = [];
 
   constructor(
     private firebase: AngularFireDatabase
@@ -33,11 +33,11 @@ export class AppService {
   /**
    * 取得記錄
    */
-  fetchRecord(): Promise<any[]> {
-    return new Promise((resolve, reject) => {
+  fetchRecord(): Promise<SpendRecord[]> {
+    return new Promise<SpendRecord[]>((resolve, reject) => {
       this.recordCollection
         .subscribe(
-          (res: any) => {
+          (res: FirebaseCollection[]) => {
             this.recordList = res.map(item => {
               const data = item.payload.val();
               data.key = item.key;
@@ -55,9 +55,10 @@ export class AppService {
   /**
    * 取得以月分組後的紀錄
    */
-  async fetchRecordByMonth(): Promise<any[]> {
+  async fetchRecordByMonth(): Promise<SpendRecordMonth[]> {
     const records = await this.fetchRecord();
     const recordByMonth = this.groupByMonth(records);
+    console.log(recordByMonth);
     return recordByMonth;
   }
 
@@ -74,7 +75,7 @@ export class AppService {
    * 將記錄以月分組
    * @param records
    */
-  groupByMonth(records: any[]): any[] {
+  groupByMonth(records: SpendRecord[]): SpendRecordMonth[] {
     const recordByMonth = [];
     from(records)
       .pipe(
@@ -144,7 +145,7 @@ export class AppService {
    * @param category
    */
   setCategoryItem(categoryItem: FirebaseObject<CategoryItem>): Promise<string> {
-    return new Promise(resolve => {
+    return new Promise<string>(resolve => {
       if (categoryItem.key) {
         this.firebase.list('item').update(categoryItem.key, categoryItem.value);
         resolve('');

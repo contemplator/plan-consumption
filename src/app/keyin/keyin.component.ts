@@ -59,7 +59,7 @@ export class KeyinComponent implements OnInit {
   /**
    * 選擇分類事件
    */
-  onCategorySelect(event: any): void {
+  onCategorySelect(event: { originEvent: MouseEvent | Object, value: Category }): void {
     const category = event.value;
     this.filtedItems = this.items
       .filter(item => item.value.categoryId === category.id)
