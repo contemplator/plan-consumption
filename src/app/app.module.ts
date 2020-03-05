@@ -27,7 +27,7 @@ import { CategoryComponent } from './category/category.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production }),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     TabViewModule,
